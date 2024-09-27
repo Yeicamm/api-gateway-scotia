@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: login-service
+          uri: http://localhost:8081  # Aquí debes poner la URL real del microservicio de login
+          predicates:
+            - Path=/api/login/**  # El prefijo de la ruta que redirige al microservicio de login
+          filters:
+            - StripPrefix=1  # Elimina el prefijo "/api" de la ruta antes de redirigir
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
